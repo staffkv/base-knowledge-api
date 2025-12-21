@@ -16,7 +16,7 @@ export const modelAnthropic = new ChatAnthropic({
 
 
 export const modelGroq = new ChatGroq({
-  model: 'llama-3.3-70b-versatile',
+  model: 'qwen/qwen3-32b',
   apiKey: process.env.GROQ_API_KEY,
   temperature: 0.7,
   maxRetries: 2,

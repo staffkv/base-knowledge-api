@@ -5,4 +5,5 @@ import { prompt } from './agent-prompt'
 export const agent = createAgent({
   model: modelGroq,
   systemPrompt: prompt,
+  tools: [],
 })
