@@ -14,7 +14,6 @@ export const modelAnthropic = new ChatAnthropic({
   anthropicApiKey: process.env.ANTHROPIC_API_KEY,
 })
 
-
 export const modelGroq = new ChatGroq({
   model: 'qwen/qwen3-32b',
   apiKey: process.env.GROQ_API_KEY,
