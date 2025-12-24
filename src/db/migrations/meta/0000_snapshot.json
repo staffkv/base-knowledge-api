@@ -1,5 +1,5 @@
 {
-  "id": "a154be0a-6d29-4470-b57b-d9d8a81a9f9b",
+  "id": "d8ba922c-691e-453e-9cb9-d0c4827a2714",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -10,59 +10,59 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "text",
+          "type": "serial",
           "primaryKey": true,
           "notNull": true
         },
-        "nome": {
-          "name": "nome",
+        "name": {
+          "name": "name",
           "type": "text",
           "primaryKey": false,
           "notNull": true
         },
-        "categoria": {
-          "name": "categoria",
+        "category": {
+          "name": "category",
           "type": "text",
           "primaryKey": false,
           "notNull": true
         },
-        "descricao": {
-          "name": "descricao",
+        "description": {
+          "name": "description",
           "type": "text",
           "primaryKey": false,
           "notNull": false
         },
-        "possui_variacoes": {
-          "name": "possui_variacoes",
+        "has_variation": {
+          "name": "has_variation",
           "type": "boolean",
           "primaryKey": false,
           "notNull": false,
           "default": false
         },
-        "preco_base": {
-          "name": "preco_base",
-          "type": "numeric(10, 2)",
+        "price_base": {
+          "name": "price_base",
+          "type": "numeric",
           "primaryKey": false,
           "notNull": false
         },
-        "variacoes": {
-          "name": "variacoes",
+        "variations": {
+          "name": "variations",
           "type": "jsonb",
           "primaryKey": false,
           "notNull": false
         },
-        "ativo": {
-          "name": "ativo",
+        "active": {
+          "name": "active",
           "type": "boolean",
           "primaryKey": false,
-          "notNull": true,
+          "notNull": false,
           "default": true
         },
-        "criado_em": {
-          "name": "criado_em",
+        "created_at": {
+          "name": "created_at",
           "type": "timestamp",
           "primaryKey": false,
-          "notNull": true,
+          "notNull": false,
           "default": "now()"
         }
       },
@@ -70,11 +70,11 @@
       "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {
-        "menu_nome_unique": {
-          "name": "menu_nome_unique",
+        "menu_name_unique": {
+          "name": "menu_name_unique",
           "nullsNotDistinct": false,
           "columns": [
-            "nome"
+            "name"
           ]
         }
       },
