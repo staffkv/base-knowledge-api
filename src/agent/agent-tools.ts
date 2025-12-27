@@ -1,6 +1,5 @@
-/** biome-ignore-all lint/style/noNonNullAssertion: <explanation> */
 import { tool } from '@langchain/core/tools'
-import { and, eq, ilike, or } from 'drizzle-orm'
+import { and, eq, ilike } from 'drizzle-orm'
 import { z } from 'zod'
 import { db } from '@/db'
 import { menu } from '@/db/schema'
@@ -10,16 +9,11 @@ export const getMenuTool = tool(
     const conditions = [eq(menu.active, true)]
 
     if (query) {
-      conditions.push(
-        or(
-          ilike(menu.name, `%${query}%`),
-          ilike(menu.description, `%${query}%`)
-        )!
-      )
+      conditions.push(ilike(menu.name, `%${query}%`))
     }
 
     if (category) {
-       conditions.push(ilike(menu.category, category))
+      conditions.push(eq(menu.category, category))
     }
 
     const items = await db
@@ -42,10 +36,11 @@ export const getMenuTool = tool(
     description:
       'Consulta o cardápio oficial. Use para buscar pratos, adicionais, variações, preços e disponibilidade.',
     schema: z.object({
-      query: z.string().nullable(),
+      query: z.string().nullable().describe('Texto informado pelo cliente'),
       category: z
         .enum(['prato', 'adicional', 'petisco', 'bebida'])
         .nullable()
+        .describe('Categoria do item'),
     }),
   },
 )
