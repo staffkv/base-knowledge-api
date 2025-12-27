@@ -1,6 +1,7 @@
 import type { FastifyInstance } from 'fastify'
 import type { ZodTypeProvider } from 'fastify-type-provider-zod'
 import { agent } from './create-agent'
+import { initialContext } from './initialContext'
 
 export async function agentController(app: FastifyInstance) {
   app
@@ -9,7 +10,7 @@ export async function agentController(app: FastifyInstance) {
       const { message } = request.body as { message: string }
 
       const responseMessage = await agent.invoke({
-        messages: [{ role: 'user', content: message }],
+        messages: [{ role: 'user', content: message}],
       })
 
       return reply.send({ message: responseMessage })
